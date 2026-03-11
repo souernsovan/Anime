@@ -27,6 +27,7 @@
             <thead class="bg-gray-100">
                 <tr class="text-left">
                     <th class="px-4 py-3">#</th>
+                    <th class="px-4 py-3">Poster</th>
                     <th class="px-4 py-3">Title</th>
                     <th class="px-4 py-3">Description</th>
                     <th class="px-4 py-3">Studio</th>
@@ -39,6 +40,13 @@
                 @forelse($animes as $index => $anime)
                 <tr class="border-t hover:bg-gray-50 transition">
                     <td class="px-4 py-3">{{ $index + 1 }}</td>
+                    <td class="px-4 py-3">
+                        @if($anime->poster)
+                            <img src="{{ asset('storage/' . $anime->poster) }}" alt="{{ $anime->title }}" class="w-16 h-24 object-cover rounded shadow">
+                        @else
+                            <div class="w-16 h-24 bg-gray-200 flex items-center justify-center text-gray-400 text-sm rounded">No Image</div>
+                        @endif
+                    </td>
                     <td class="px-4 py-3 font-semibold">{{ $anime->title }}</td>
                     <td class="px-4 py-3 text-gray-600">{{ $anime->description ?: 'N/A' }}</td>
                     <td class="px-4 py-3 text-gray-600">{{ $anime->studio ?: 'N/A' }}</td>
